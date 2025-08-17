@@ -3,36 +3,576 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muazul Islam - Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <title>Ismail Hasan - Full Stack Engineer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header .title {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            color: #667eea;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            background: rgba(102, 126, 234, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .contact-links a:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.2s; }
+        .section:nth-child(4) { animation-delay: 0.3s; }
+        .section:nth-child(5) { animation-delay: 0.4s; }
+        .section:nth-child(6) { animation-delay: 0.5s; }
+        .section:nth-child(7) { animation-delay: 0.6s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            text-align: justify;
+        }
+
+        .experience-item, .project-item {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border-radius: 15px;
+            background: rgba(102, 126, 234, 0.05);
+            border: 1px solid rgba(102, 126, 234, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover, .project-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.15);
+            border-color: rgba(102, 126, 234, 0.2);
+        }
+
+        .job-header, .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .job-title, .project-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.2rem;
+        }
+
+        .company, .project-tech {
+            color: #667eea;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .date {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            background: rgba(127, 140, 141, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            white-space: nowrap;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-tag {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .achievements li, .experience-item li, .project-item li {
+            margin-bottom: 0.5rem;
+            color: #555;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .achievements li::before, .experience-item li::before, .project-item li::before {
+            content: '▸';
+            color: #667eea;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .education {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .education-content h3 {
+            color: #2c3e50;
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .education-content p {
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .cgpa {
+            color: #27ae60;
+            font-weight: 600;
+            background: rgba(39, 174, 96, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+        }
+
+        .achievement-item {
+            background: rgba(241, 196, 15, 0.1);
+            border: 1px solid rgba(241, 196, 15, 0.2);
+            padding: 1rem;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+        }
+
+        .achievement-title {
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .achievement-result {
+            color: #f39c12;
+            font-weight: 500;
+        }
+
+        .contribution-item {
+            background: rgba(52, 152, 219, 0.1);
+            border: 1px solid rgba(52, 152, 219, 0.2);
+            padding: 1rem;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+        }
+
+        .contribution-title {
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .header {
+                padding: 2rem 1rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .contact-links {
+                gap: 1rem;
+            }
+
+            .contact-links a {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .job-header, .project-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .education {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Muazul Islam</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="projects.html">Projects</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div class="container">
+        <header class="header">
+            <div class="profile-img">
+                <i class="fas fa-user"></i>
+            </div>
+            <h1>Ismail Hasan</h1>
+            <p class="title">Full Stack Engineer</p>
+            <div class="contact-links">
+                <a href="mailto:hasanismail0@gmail.com">
+                    <i class="fas fa-envelope"></i>
+                    hasanismail0@gmail.com
+                </a>
+                <a href="https://linkedin.com/in/hasanismail" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                    LinkedIn
+                </a>
+                <a href="https://github.com/hasanismail" target="_blank">
+                    <i class="fab fa-github"></i>
+                    GitHub
+                </a>
+                <a href="tel:+8801712345678">
+                    <i class="fas fa-phone"></i>
+                    +880 171 234 5678
+                </a>
+            </div>
+        </header>
 
-    <main>
-        <section id="about">
-            <h2>About Me</h2>
-            <p>I am an undergrad CS student from Bangladesh</p>
+        <section class="section">
+            <h2><i class="fas fa-user-circle"></i> About Me</h2>
+            <p class="about-text">
+                Experienced full-stack engineer working at a startup who is open to new technologies and frameworks. 
+                Passionate about building impactful products and solving real-world problems through efficient, clean code. 
+                I thrive in dynamic environments and enjoy tackling complex challenges that push the boundaries of what's possible.
+            </p>
         </section>
 
-        <section id="contact">
-            <h2>Contact</h2>
-            <p>Email: muazulislam@gmail.com</p>
-            <p>LinkedIn: <a href="https://www.linkedin.com/in/muazulislam">Muazul Islam</a></p>
+        <section class="section">
+            <h2><i class="fas fa-briefcase"></i> Experience</h2>
+            <div class="experience-item">
+                <div class="job-header">
+                    <div>
+                        <div class="job-title">Full Stack Engineer</div>
+                        <div class="company">BinduLogic Ltd</div>
+                    </div>
+                    <div class="date">June 2024 - Present</div>
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-tag">ExpressJS</span>
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Postgres</span>
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">RTK Query</span>
+                    <span class="tech-tag">Redux</span>
+                    <span class="tech-tag">Zod</span>
+                </div>
+                <ul>
+                    <li>Created and integrated the inventory management system in hospital management system</li>
+                    <li>Redesigned the core database schema to integrate inventory management in the hospital management system</li>
+                    <li>Solved blockers in the server repository and reviewing some API related PRs</li>
+                    <li>Optimized the service file structure for inventory operations by reducing lines of code from 2500 to only 500</li>
+                    <li>Created the dashboard for product module</li>
+                    <li>Created inventory operations to transfer products from one place to another</li>
+                </ul>
+            </div>
         </section>
-    </main>
 
-    <footer>
-        <p>&copy; Muazul Islam</p>
+        <section class="section">
+            <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+            <div class="education">
+                <div class="education-content">
+                    <h3>Bachelor of Science in Software Engineering</h3>
+                    <p>Islamic University of Technology</p>
+                    <p>June 2021 - September 2025</p>
+                </div>
+                <div class="cgpa">CGPA: 3.85 / 4.00</div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2><i class="fas fa-code"></i> Projects</h2>
+            
+            <div class="project-item">
+                <div class="project-header">
+                    <div>
+                        <div class="project-title">Share - The Blogging Platform</div>
+                    </div>
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Express</span>
+                    <span class="tech-tag">Shadcn/UI</span>
+                    <span class="tech-tag">Postgres</span>
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">Zod</span>
+                    <span class="tech-tag">RTK Query</span>
+                    <span class="tech-tag">Prisma</span>
+                    <span class="tech-tag">Postman</span>
+                </div>
+                <ul>
+                    <li>Developed a website in nodejs runtime where users can post text blogs and interact on them by reacting and commenting. Users can follow each other if they like.</li>
+                    <li>Implemented the entire authentication system from scratch using JWT</li>
+                    <li>Used RTK Query hooks to fetch data from backend</li>
+                </ul>
+            </div>
+
+            <div class="project-item">
+                <div class="project-header">
+                    <div>
+                        <div class="project-title">Simple NestJS Backend</div>
+                    </div>
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-tag">NestJS</span>
+                    <span class="tech-tag">Prisma</span>
+                    <span class="tech-tag">Jest</span>
+                    <span class="tech-tag">Supertest</span>
+                    <span class="tech-tag">FakerJS</span>
+                    <span class="tech-tag">Swagger</span>
+                    <span class="tech-tag">Postman</span>
+                </div>
+                <ul>
+                    <li>Developed a simple backend server for a todo app using ORM</li>
+                    <li>Implemented unit testing and e2e testing using fake data for the functions and APIs</li>
+                    <li>Configured Swagger for documenting the APIs and used Postman and Jetbrains HTTP client to test the APIs</li>
+                </ul>
+            </div>
+
+            <div class="project-item">
+                <div class="project-header">
+                    <div>
+                        <div class="project-title">ExScheduler</div>
+                    </div>
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-tag">.NET Web API</span>
+                    <span class="tech-tag">C#</span>
+                    <span class="tech-tag">EntityFramework</span>
+                    <span class="tech-tag">Minizinc</span>
+                    <span class="tech-tag">Express</span>
+                    <span class="tech-tag">EJS</span>
+                    <span class="tech-tag">Postgres</span>
+                </div>
+                <ul>
+                    <li>Gathered SRS and developed an exam routine generating application that generates routine based on some constraints and maximizing an output function.</li>
+                    <li>Modeled the real-life scenario in Zinc modeling language with proper constraints and utility function as well as proper data structure to solve the problem using CSP/AI solver</li>
+                    <li>Mapped the Minizinc model and output with the asp.NET backend as well as implemented many backend APIs.</li>
+                    <li>Merged the frontend and backend and wrote the frontend Javascript</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2><i class="fas fa-trophy"></i> Achievements</h2>
+            <div class="achievement-item">
+                <div class="achievement-title">IUT Coderush 3.0 Programming Contest 2025</div>
+                <div class="achievement-result">5th place out of 60 teams</div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2><i class="fas fa-code-branch"></i> Open Source Contributions</h2>
+            
+            <div class="contribution-item">
+                <div class="contribution-title">Harbor CLI</div>
+                <ul>
+                    <li>Setting the E2E testing infrastructure in the project and adding tests for the login command #90</li>
+                    <li>Adding the missing options in some commands #77</li>
+                    <li>Fixing the login command when flags provided #89</li>
+                </ul>
+            </div>
+
+            <div class="contribution-item">
+                <div class="contribution-title">DefinitelyTyped</div>
+                <ul>
+                    <li>Added type definitions in typescript for the package rrdiagram-js. #69297</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 Ismail Hasan. Built with passion and code.</p>
     </footer>
+
+    <script>
+        // Add smooth scrolling and some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add scroll reveal effect
+            const sections = document.querySelectorAll('.section');
+            
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Add click effects to project and experience items
+            const items = document.querySelectorAll('.experience-item, .project-item');
+            items.forEach(item => {
+                item.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = 'translateY(-3px)';
+                    }, 100);
+                });
+            });
+
+            // Add typing effect to the title (optional)
+            const title = document.querySelector('.title');
+            const originalText = title.textContent;
+            title.textContent = '';
+            
+            let i = 0;
+            const typeEffect = setInterval(() => {
+                if (i < originalText.length) {
+                    title.textContent += originalText.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typeEffect);
+                }
+            }, 100);
+        });
+    </script>
 </body>
 </html>
